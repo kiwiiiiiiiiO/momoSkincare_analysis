@@ -93,7 +93,7 @@ export const SidebarData = [
     {
         // 美頸霜
         title : '美頸霜', 
-        path: '/neckcream',
+        path: '/ ',
         icon: <AiIcons.AiFillHome />,
         classname: 'nav-text'
     },

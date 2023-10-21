@@ -8,6 +8,16 @@ import { IconContext } from 'react-icons/lib';
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false)
+  //
+  // const[trydata, settrydata] = useState([
+  //   {
+  //       // 介紹網站
+  //       title : '網頁介紹', 
+  //       path: '/',
+  //       icon: <AiIcons.AiFillHome />,
+  //       classname: 'nav-text'
+  //   },])
+  
   const showSideBar = () => setSidebar(! sidebar)
   // the opposite of 
   return (
