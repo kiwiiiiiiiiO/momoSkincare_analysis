@@ -1,52 +1,32 @@
 import React,{useState} from 'react'
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import {Link} from 'react-router-dom'
+import { IconContext } from 'react-icons';
+import * as AiIcons from 'react-icons/ai'
+import * as BiIcons from 'react-icons/bi'
 import { SidebarData } from './SidebarData';
-import { IconContext } from 'react-icons/lib';
-
-
+import {Menu} from 'antd';
+import { useNavigate } from 'react-router-dom'
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false)
-  //
-  // const[trydata, settrydata] = useState([
-  //   {
-  //       // 介紹網站
-  //       title : '網頁介紹', 
-  //       path: '/',
-  //       icon: <AiIcons.AiFillHome />,
-  //       classname: 'nav-text'
-  //   },])
-  
-  const showSideBar = () => setSidebar(! sidebar)
+  const navigate = useNavigate()
   // the opposite of 
   return (
-    <IconContext.Provider value={{ color: "undifind" }}>
-      <div className='sidebar'>
-          <Link to="#" className='menu-bars'>
-            <FaIcons.FaBars onClick={ showSideBar }/>
-          </Link>
-      </div>
-      <nav className={sidebar ? 'nav-menu active':'nav-menu'} >
-        <ul className='navbar-items'>
-          <li className='navbar-toggle'>
-            <Link to="#" className='menu-bars'>
-              <AiIcons.AiOutlineClose />
-            </Link>
-          </li>
-            {SidebarData.map((item, index) => {
-              return (
-                <li key ={index} className={item.classname}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              )
-            })}
-        </ul>
-      </nav>
-    </IconContext.Provider>
+    <div className='Sidebar'>
+      <IconContext.Provider value={{size:'15px'}}>
+          <Menu mode='inline' className='SidebarMenu' onClick={(Item)=>{
+            navigate(Item.key)}}>
+            <Menu.Item key='/' className='SidebarItem' icon={<AiIcons.AiFillHome />} >網頁介紹</Menu.Item>
+            <Menu.Item key='/skincare' className='SidebarItem' icon={<BiIcons.BiHappyHeartEyes/>} >臉部保養</Menu.Item>
+            <Menu.SubMenu className='SidebarItem' icon={<BiIcons.BiBookContent />}title='各類別'>
+              {
+                SidebarData.map((item,index)=>{
+                  return(
+                    <Menu.Item key={item.key} icon={item.icon} className={item.classname} > {item.label} </Menu.Item>
+                  )
+                })
+              }
+            </Menu.SubMenu>
+          </Menu>
+        </IconContext.Provider>
+    </div>
   )
 }
 

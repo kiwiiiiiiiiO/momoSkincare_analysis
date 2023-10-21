@@ -1,9 +1,9 @@
 import React from 'react'
-
+// 乳霜
 const Cream = () => {
   return (
     <div className='Cream'>
-        <h1>Cream</h1>
+        <h1>Creameee</h1>
     </div>
   )
 }

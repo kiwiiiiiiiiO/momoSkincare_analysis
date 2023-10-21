@@ -7,94 +7,80 @@ import * as PiIcons from 'react-icons/pi'
 import * as BsIcons from "react-icons/bs";
 export const SidebarData = [
     {
-        // 介紹網站
-        title : '網頁介紹', 
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        classname: 'nav-text'
-    },
-    {
-        // Skincare
-        title : '臉部保養', 
-        path: '/skincare',
-        icon: < BiIcons.BiHappyHeartEyes/>,
-        classname: 'nav-text'
-    },
-    {
         // 化妝水 
-        title : '化妝水', 
-        path: '/toner',
+        label : '化妝水', 
+        key: '/toner',
         icon: <IoIcons.IoWaterSharp />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 精華液 
-        title : '精華液', 
-        path: '/essence',
+        label : '精華液', 
+        key: '/essence',
         icon: <AiIcons.AiFillExperiment />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 凝膠 
-        title : '凝膠', 
-        path: '/gel',
+        label : '凝膠', 
+        key: '/gel',
         icon: <BsIcons.BsFlower3 />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 乳液 
-        title : '乳液', 
-        path: '/lotion',
+        label : '乳液', 
+        key: '/lotion',
         icon: <BsIcons.BsFlower2 />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 乳霜 
-        title : '乳霜', 
-        path: '/cream',
+        label : '乳霜', 
+        key: '/cream',
         icon: <BsIcons.BsFlower1 />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 面膜
-        title : '面膜', 
-        path: '/faceMask',
+        label : '面膜', 
+        key: '/faceMask',
         icon: <PiIcons.PiMaskHappyLight />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 眼霜
-        title : '眼霜', 
-        path: '/eyeCream',
+        label : '眼霜', 
+        key: '/eyeCream',
         icon: <AiIcons.AiFillEye />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 護唇膏
-        title : '護唇膏', 
-        path: '/lipBalm',
+        label : '護唇膏', 
+        key: '/lipBalm',
         icon: <GiIcons.GiLips />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 防曬
-        title : '防曬', 
-        path: '/sunscreen',
+        label : '防曬', 
+        key: '/sunscreen',
         icon: <AiIcons.AiFillHome />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         //  素顏霜
-        title : '素顏霜', 
-        path: '/toningcream',
+        label : '素顏霜', 
+        key: '/toningcream',
         icon: <AiIcons.AiFillHome />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
     {
         // 美頸霜
-        title : '美頸霜', 
-        path: '/ ',
+        label : '美頸霜', 
+        key: '/neckcream',
         icon: <AiIcons.AiFillHome />,
-        classname: 'nav-text'
+        classname: 'SidebarItem'
     },
 ]
