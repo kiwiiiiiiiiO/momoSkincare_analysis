@@ -13,7 +13,7 @@ const Sidebar = () => {
       <IconContext.Provider value={{size:'15px'}}>
           <Menu mode='inline' className='SidebarMenu' onClick={(Item)=>{
             navigate(Item.key)}}>
-            <Menu.Item key='/' className='SidebarItem' icon={<AiIcons.AiFillHome />} >網頁介紹</Menu.Item>
+            <Menu.Item key='/' className='SidebarItem' icon={<AiIcons.AiFillHome />} >專案介紹</Menu.Item>
             <Menu.Item key='/skincare' className='SidebarItem' icon={<BiIcons.BiHappyHeartEyes/>} >臉部保養</Menu.Item>
             <Menu.SubMenu className='SidebarItem' icon={<BiIcons.BiBookContent />}title='各類別'>
               {
