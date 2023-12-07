@@ -7,7 +7,7 @@ const IconStyle ={
   fontSize:'20px', 
   marginLeft:'10px',
 }
-const Footer = () => {
+function Footer () {
   return (
     <div className='Footer'>
         <Text> Created by Jennifer Ou</Text>

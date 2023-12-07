@@ -10,7 +10,6 @@ import FaceMask from "../routes/FaceMask";
 import Gel from "../routes/Gel";
 import Lotion from "../routes/Lotion"; 
 import Toner from "../routes/Toner";
-import ErrorPage from "../error-page";
 import LipBalm from "../routes/LipBalm";
 import Sunscreen from "../routes/Sunscreen"
 import ToningCream from "../routes/ToningCream";
@@ -20,7 +19,7 @@ import NeckCream from "../routes/NeckCream";
 function AppRoutes() {
   return (
       <Routes>
-        <Route path='/' errorElement={<ErrorPage />} element={<Introduction/>}></Route>
+        <Route path='/' element={<Introduction/>}></Route>
         <Route path='/skincare' element={<Skincare />}></Route>
         <Route path='/essence' element={<Essence />}></Route>
         <Route path='/eyecream' element={<Eyecream />}></Route>

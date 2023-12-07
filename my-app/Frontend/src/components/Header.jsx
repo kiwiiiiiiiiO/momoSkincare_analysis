@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image } from 'antd';
-import MomoIcon from '../image/momoIcon.png'
+import MomoIcon from '../public/momoIcon.png'
 import { Typography } from "antd";
 const { Title } = Typography;
 const ImageStyle={

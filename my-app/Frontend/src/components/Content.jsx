@@ -1,6 +1,6 @@
 import React from 'react'
 import AppRoutes from './AppRoutes'
-const Content = () => {
+function Content () {
   return (
     <div className='Content'>
       <AppRoutes />
