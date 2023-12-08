@@ -12,12 +12,52 @@ const db = mysql.createConnection({
     password:'aa910828',
     database:'MomoSkinCare'
 })
-// Mysql@localhost:3306
 app.get('/',(req, res) =>{
-    return res.json("fron the bAckend side")
+    return res.json("Fron the bAckend side")
 })
 app.get('/products',(req, res) =>{
     const sql = "SELECT * from MomoSKinCare.products";
+    db.query(sql, (err, data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+
+// skincare - 商品數
+app.get('/skincare/products',(req, res) =>{
+    const sql = "SELECT type, class, number FROM MomoSkinCare.skincare_analysis where type='商品數';";
+    db.query(sql, (err, data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+// skincare - 銷量
+app.get('/skincare/sales',(req, res) =>{
+    const sql = "SELECT class as name, number as size FROM MomoSkinCare.skincare_analysis where type='銷量';";
+    db.query(sql, (err, data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+// skincare - 營收總額
+app.get('/skincare/revenue',(req, res) =>{
+    const sql = "SELECT type, class, number FROM MomoSkinCare.skincare_analysis where type='銷量';";
+    db.query(sql, (err, data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+// skincare - 人氣
+app.get('/skincare/popularity',(req, res) =>{
+    const sql = "SELECT type, class, number FROM MomoSkinCare.skincare_analysis where type='總人氣' ;";
+    db.query(sql, (err, data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+// skincare - 留言
+app.get('/skincare/reviews',(req, res) =>{
+    const sql = "SELECT type, class, number FROM MomoSkinCare.skincare_analysis where type='總留言';";
     db.query(sql, (err, data) => {
         if(err) return res.json(err);
         return res.json(data);

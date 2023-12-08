@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  background-color:rgba(0, 0, 0, 0.02);;
+  /* background-color:rgba(0, 0, 0, 0.02); */
 }
 .Header {
     display: flex;
@@ -10,7 +10,7 @@
     top:0;
     width: 100%;   
     padding: 0 20px;
-    background-color: blue;
+    /* background-color: blue; */
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -22,12 +22,12 @@
   margin-bottom: 500px;
   justify-content: flex-start;
   align-items: stretch;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 .Sidebar {
   height: 100%;
-  margin-bottom: 10px ;
-  background-color: black;
+  /* margin-bottom: 10px ; */
+  /* background-color: black; */
 }
 .SidebarItem{
   font-size: 15px;
@@ -35,12 +35,11 @@
 .Content {
   display: flex;
   padding-left: 12px;
-  margin-top: 12px;
+  margin-top: 50px;
   margin-bottom: 80px;
-  width: 
-  90vw;
+  width:90vw;
   height: 80vh;
-  background-color: green;
+  /* background-color: green; */
 }
 
 .Footer {

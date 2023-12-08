@@ -4,7 +4,6 @@ import {Space} from 'antd';
 import Header from "./components/Header";
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
-import Footer from "./components/Footer"
 
 function App() {
   // const [data, setData] = useState([])
@@ -26,7 +25,6 @@ function App() {
         <Sidebar></Sidebar>
         <Content></Content>
       </Space>
-      <Footer /> 
     </div>
   )
 }

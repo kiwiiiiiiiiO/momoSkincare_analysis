@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 // 眼霜
 const EyeCream = () => {
   return (
