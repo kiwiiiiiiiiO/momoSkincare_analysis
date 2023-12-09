@@ -25,6 +25,7 @@ function App() {
         <Sidebar></Sidebar>
         <Content></Content>
       </Space>
+  
     </div>
   )
 }

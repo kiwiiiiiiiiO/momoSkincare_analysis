@@ -8,9 +8,11 @@
     display: flex;
     position: fixed;
     top:0;
+    left: 0;
     width: 100%;   
     padding: 0 20px;
-    /* background-color: blue; */
+    background-color: #a60064;
+    color: white ; 
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -18,7 +20,7 @@
 }
 .MainPage {
   display: flex;
-  margin-top: 200px;
+  margin-top: 80px;
   margin-bottom: 500px;
   justify-content: flex-start;
   align-items: stretch;
@@ -35,24 +37,9 @@
 .Content {
   display: flex;
   padding-left: 12px;
-  margin-top: 50px;
+  margin-top: 10px;
   margin-bottom: 80px;
   width:90vw;
   height: 80vh;
-  /* background-color: green; */
 }
 
-.Footer {
-  height: 60px;
-  display: flex;
-  /* position: fixed;
-  padding: 0 20px;
-  left: 0;
-  bottom: 0; */
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-  border-top: 1px solid rgba(0,0,0,0.15);
-  background-color:blue;
-}

@@ -768,7 +768,7 @@ const Essence = () => {
   
         </Card>
         <Card title="功效" 
-          style={{ width:"1150px", marginTop:"15px"}}
+          style={{ width:"1150px", marginTop:"15px", marginBottom:"50px"}}
           tabList={tabList}
           activeTabKey={activeTabKey3}
           onTabChange={onTab3Change}
