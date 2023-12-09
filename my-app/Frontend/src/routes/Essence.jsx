@@ -563,7 +563,7 @@ const contentList1 = {
   sales: 
     <Col span={22}>
       <LineChart
-        width={1100}
+        width={1200}
         height={300}
         data={salesData}
         margin={{
@@ -584,7 +584,7 @@ const contentList1 = {
   revenue: 
   <Col span={22}>
     <LineChart
-      width={1100}
+      width={1200}
       height={300}
       data={revenueData}
       margin={{
@@ -605,7 +605,7 @@ const contentList1 = {
   popularity:  
   <Col span={22}>
     <LineChart
-      width={1100}
+      width={1200}
       height={300}
       data={popularityData}
       margin={{
@@ -751,7 +751,7 @@ const Essence = () => {
               },
           }} >
         <Card title="價格區間" 
-          style={{ width:"1150px", marginTop:"15px"}}
+          style={{ width:"1250px", marginTop:"15px"}}
           tabList={tabList}
           activeTabKey={activeTabKey1}
           onTabChange={onTab1Change}
