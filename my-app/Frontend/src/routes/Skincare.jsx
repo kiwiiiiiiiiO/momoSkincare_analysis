@@ -73,7 +73,7 @@ class CustomizedContent extends PureComponent {
             width={width}
             height={height}
             style={{
-              fill: depth < 2 ? colors[Math.floor((index / root?.children.length ) * 6)] : '#ffffff00',
+              fill: depth < 2 ? colors[Math.floor((index / root?.children.length ) * 7)] : '#ffffff00',
               stroke: '#fff',
               strokeWidth: 2 / (depth + 1e-10),
               strokeOpacity: 1 / (depth + 1e-10),
@@ -83,13 +83,13 @@ class CustomizedContent extends PureComponent {
         }
        
         {depth === 1 ? (
-          <text x={x + width / 2} y={y + height / 2 + 7} textAnchor="middle" fill="#fff" fontSize={14}>
-            {size }
+          <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle" fill="#fff" fontSize={14}>
+            {size}
           </text>
         ) : null}
         {depth === 1 ? (
           <text x={x + 4} y={y + 18} fill="#fff" fontSize={16} fillOpacity={0.9}>
-            {name }
+            {name}
           </text>
         ) : null}
       </g>
@@ -185,8 +185,8 @@ const Skincare = () => {
          {/* 銷量   treemap*/}
           <Card title="銷量" className='skincareSales'>
             <Treemap
-              width={400}
-              height={200}
+              width={1200}
+              height={500}
               data={db_salesData}
               dataKey="size"
               stroke="#fff"
