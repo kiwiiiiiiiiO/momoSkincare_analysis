@@ -5,6 +5,7 @@ import * as IoIcons from 'react-icons/io5'
 import * as BiIcons from 'react-icons/bi'
 import * as PiIcons from 'react-icons/pi'
 import * as BsIcons from "react-icons/bs";
+import * as FaIcons from "react-icons/fa6";
 export const SidebarData = [
     {
         // 化妝水 
@@ -66,21 +67,21 @@ export const SidebarData = [
         // 防曬
         label : '防曬', 
         key: '/sunscreen',
-        icon: <AiIcons.AiFillHome />,
+        icon: <FaIcons.FaSun />,
         classname: 'SidebarItem'
     },
     {
         //  素顏霜
         label : '素顏霜', 
         key: '/toningcream',
-        icon: <AiIcons.AiFillHome />,
+        icon: <BsIcons.BsStars />,
         classname: 'SidebarItem'
     },
     {
         // 美頸霜
         label : '美頸霜', 
         key: '/neckcream',
-        icon: <AiIcons.AiFillHome />,
+        icon: <GiIcons.GiNecklaceDisplay />,
         classname: 'SidebarItem'
     },
 ]
