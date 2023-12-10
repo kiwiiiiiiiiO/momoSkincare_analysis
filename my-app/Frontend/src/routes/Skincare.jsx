@@ -1,47 +1,84 @@
 import React, { PureComponent } from 'react';
 import Axios from "axios";
 import {useEffect, useState} from 'react';
-import {Row, Col, Card} from 'antd';
+import {Row, Col, Card, ConfigProvider, Table, Tabs} from 'antd';
 import { Treemap, ResponsiveContainer } from 'recharts';
 import { PieChart, Pie,Cell,  Legend, Tooltip} from 'recharts';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid } from 'recharts';
 import axios from 'axios';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip as TooltipChart, Legend as LegendChart } from 'chart.js';
+ChartJS.register(ArcElement, TooltipChart, LegendChart);
 
 
+const textCenter = {
+  id:'doughnutLabel',
+  beforeDatasetsDraw(chart,args, pluginOptions){
+    const {ctx, data} = chart;
+    ctx.save();
 
-const salesData = [
-  {
-    name: '乳液',
-    size: 457,
-  },
-  {
-    name: 'controls',
-    size: 1000,
-  },
-  {
-    name: 'data',
-    size: 1000,
-  },
-  {
-    name: 'events',
-    size: 1000,
-  },
-  {
-    name: 'legend',
-    size: 10000,
-  },
-  {
-    name: 'operator',
-    size: 10000,
-  },
-];
+    if (chart._active.length > 0 ){
+      const textLabel = chart.config.data.labels[chart._active[0].index];
+      const numberLable = chart.config.data.datasets[chart._active[0].datasetIndex].data[chart._active[0].index];
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillStyle = '#4e484a';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${textLabel}:${numberLable}`, chart.getDatasetMeta(0).data[0].x,chart.getDatasetMeta(0).data[0].y);
+    }
+  }
+}
 
-const productData = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
+export const ProductsDoughnutData = {
+  labels: ['乳液', '乳霜', '凝膠','化妝水', '眼霜', '精華液', '素顏霜', '美頸霜','護唇膏', '防曬', '面膜'],
+  datasets: [
+    {
+      label: '數量',
+      data: [633 , 450 ,275 ,746 ,448 , 584 , 192 , 19  , 294, 327 , 467],
+      backgroundColor: [
+        '#e2e2df','#d2d2cf', '#e2cfc4', '#f7d9c4', '#faedcb', '#c9e4de', '#c6def1', '#dbcdf0', '#dbcdf0', '#f2c6de', '#f9c6c9'
+      ],
+      borderColor: [
+        '#4e484a',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+export const SalesDoughnutData = {
+  labels: ['乳液', '乳霜', '凝膠','化妝水', '眼霜', '精華液', '素顏霜', '美頸霜','護唇膏', '防曬', '面膜'],
+  datasets: [
+    {
+      label: '數量',
+      data: [488250 , 847875 ,201575, 604725 ,367750, 1385425 , 429075 ,4325 , 281925, 650800, 721325],
+      backgroundColor: [
+        '#e2e2df','#d2d2cf', '#e2cfc4', '#f7d9c4', '#faedcb', '#c9e4de', '#c6def1', '#dbcdf0', '#dbcdf0', '#f2c6de', '#f9c6c9'
+      ],
+      borderColor: [
+        '#4e484a',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+export const RevenueDoughnutData = {
+  labels: ['乳液', '乳霜', '凝膠','化妝水', '眼霜', '精華液', '素顏霜', '美頸霜','護唇膏', '防曬', '面膜'],
+  datasets: [
+    {
+      label: '數量',
+      data: [795692275 , 1201579675 , 112072625, 539348675 , 530613350 ,2192220800, 605652475 , 4415775 , 87651900 , 514353775 , 257950750],
+      backgroundColor: [
+        '#e2e2df','#d2d2cf', '#e2cfc4', '#f7d9c4', '#faedcb', '#c9e4de', '#c6def1', '#dbcdf0', '#dbcdf0', '#f2c6de', '#f9c6c9'
+      ],
+      borderColor: [
+        '#4e484a',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -56,8 +93,7 @@ return (
 );
 };
 
-const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
-const COLORSS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const TreemapColor = ['#e2e2df', '#d2d2cf', '#e2cfc4', '#f7d9c4', '#faedcb', '#c9e4de', '#c6def1', '#dbcdf0', '#dbcdf0', '#f2c6de', '#f9c6c9'];
 
 class CustomizedContent extends PureComponent {
   render() {
@@ -73,7 +109,7 @@ class CustomizedContent extends PureComponent {
             width={width}
             height={height}
             style={{
-              fill: depth < 2 ? colors[Math.floor((index / root?.children.length ) * 7)] : '#ffffff00',
+              fill: depth < 2 ? colors[index] : '#ffffff00',
               stroke: '#fff',
               strokeWidth: 2 / (depth + 1e-10),
               strokeOpacity: 1 / (depth + 1e-10),
@@ -98,48 +134,105 @@ class CustomizedContent extends PureComponent {
 }
 const popularityData = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: '乳液',
+    人氣: 24073,
+    留言數: 4986,
+   
+  }, {
+    name: '乳霜',
+    人氣: 24502,
+    留言數: 5160,
+   
+  }, {
+    name: '凝膠',
+    人氣: 9907,
+    留言數: 2067,
+   
+  }, {
+    name: '化妝水',
+    人氣: 32557,
+    留言數: 6750,
+   
+  }, {
+    name: '眼霜',
+    人氣: 24403,
+    留言數: 5135,
+   
+  }, {
+    name: '精華液',
+    人氣: 47157,
+    留言數: 9779,
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: '素顏霜',
+    人氣: 10953,
+    留言數: 2348,
+  },{
+    name: '美頸霜',
+    人氣: 423,
+    留言數: 93,
+  },{
+    name: '護唇膏',
+    人氣: 15925,
+    留言數: 3317,
+  },{
+    name: '防曬',
+    人氣: 24646,
+    留言數: 5113,
+  },{
+    name: '面膜',
+    人氣: 29591,
+    留言數: 6205,
   },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
+ 
+
 ];
+
+const productsColumns = [
+  {
+    title: '類別',
+    dataIndex: 'name',
+  },
+  {
+    title: '商品數',
+    dataIndex: 'size',
+    sorter: {compare:(a, b) => parseInt(BigInt((BigInt(a.size) / BigInt(10000) ) - (BigInt(b.size) / BigInt(10000))).toString())},
+  }
+];
+
+const salesColumns = [
+  {
+    title: '類別',
+    dataIndex: 'name',
+  },
+  {
+    title: '銷售量',
+    dataIndex: 'size',
+    sorter: {compare:(a, b) => parseInt(BigInt((BigInt(a.size) / BigInt(10000) ) - (BigInt(b.size) / BigInt(10000))).toString())},
+  }
+];
+
+const revenueColumns = [
+  {
+    title: '類別',
+    dataIndex: 'name',
+  },
+  {
+    title: '營收總額',
+    dataIndex: 'size',
+    sorter: {compare:(a, b) => parseInt(BigInt((BigInt(a.size) / BigInt(10000) ) - (BigInt(b.size) / BigInt(10000))).toString())},
+  }
+];
+
+
+const onChange = (pagination, filters, sorter, extra) => {
+  console.log('params', pagination, filters, sorter, extra);
+};
+
+
+const TabOnChange = (key) => {
+  console.log(key);
+};
 const Skincare = () => {
   const [db_salesData,db_setsSale] = useState([]);
   const [db_productsData,db_setProducts] = useState([]);
@@ -168,11 +261,13 @@ const Skincare = () => {
         const db_reviewsData = allData[4].data
         db_setsSale(db_salesData)
         console.log(db_salesData)
-        console.log( db_productsData)
+        db_setProducts(db_productsData)
+        // console.log( db_productsData)
+        db_setRevenue(db_revenueData)
         console.log(db_revenueData)
-        console.log(db_popularityData)
-        console.log(db_reviewsData)
-
+        
+        // console.log(db_popularityData)
+        // console.log(db_reviewsData)
       })
     )
   } 
@@ -181,71 +276,163 @@ const Skincare = () => {
   },[])  
   return (
     <Row className='skincare'>
+      <ConfigProvider
+        theme={{
+            token:{
+              colorPrimary: '#d31874',
+            },
+        }} >
         <Col>
+           {/* 商品數   circle*/}
+           <Card  title="商品數" className='skincareProduct' style={{marginTop:'15px'}} headStyle={{ fontSize:"20px",color:"white",backgroundColor:"#d31874"}}>
+           <Tabs
+              defaultActiveKey="1"
+              onChange={onChange}
+              items={[
+                {
+                  label: `甜甜圈圖`,
+                  key: '1',
+                  children:  
+                  <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
+                    <Doughnut data={ProductsDoughnutData} plugins={[textCenter]} />;
+                  </div>,
+                },
+                {
+                  label: `樹圖`,
+                  key: '2',
+                  children: 
+                  <Treemap
+                    width={1100}
+                    height={500}
+                    data={db_productsData}
+                    dataKey="size"
+                    stroke="#fff"
+                    fill="#8884d8"
+                    content={<CustomizedContent colors={TreemapColor} />}
+                  />,
+                },
+                {
+                  label: `表格`,
+                  key: '3',
+                  children:   
+                  <div style={{ display: "flex", justifyContent: "center"}}>
+                    <Table style={{marginTop:'30px', width:'900px'}} pagination={false} agination columns={productsColumns} dataSource={db_productsData} onChange={onChange} />
+                  </div>,
+                },
+              ]}
+            />
+          </Card>
          {/* 銷量   treemap*/}
-          <Card title="銷量" className='skincareSales'>
-            <Treemap
-              width={1200}
-              height={500}
-              data={db_salesData}
-              dataKey="size"
-              stroke="#fff"
-              fill="#8884d8"
-              content={<CustomizedContent colors={COLORS} />}/>
-            
+          <Card title="銷量" 
+            className='skincareSales'
+            style={{marginTop:'15px'}} headStyle={{ width:"1150px", fontSize:"20px",color:"white",backgroundColor:"#d31874"}} >
+            <Tabs
+              defaultActiveKey="1"
+              onChange={onChange}
+              items={[
+                {
+                  label: `甜甜圈圖`,
+                  key: '1',
+                  children: 
+                  <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
+                    <Doughnut data={SalesDoughnutData} plugins={[textCenter]} />;
+                  </div>,
+                },
+                {
+                  label: `樹圖`,
+                  key: '2',
+                  children:  
+                  <Treemap
+                    width={1100}
+                    height={500}
+                    data={db_salesData}
+                    dataKey="size"
+                    stroke="#fff"
+                    fill="#8884d8"
+                    content={<CustomizedContent colors={TreemapColor} />}
+                  />,
+                },
+                {
+                  label: `表格`,
+                  key: '3',
+                  children:  
+                  <div style={{ display: "flex", justifyContent: "center"}}>
+                    <Table style={{marginTop:'30px', width:'900px'}} pagination={false} agination columns={salesColumns} dataSource={db_salesData} onChange={onChange} />
+                  </div>,
+                },
+              ]}
+            />
           </Card>
-            {/* 商品數   circle*/}
-          <Card  title="商品數" className='skincareProduct'>
-            <PieChart width={400} height={400}>
-              <Pie
-                data={productData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {productData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORSS[index % COLORSS.length]} />
-                ))}
-              </Pie>
-            </PieChart>
-          </Card>
-          {/* 營收總額  ring  排行榜 */}
-          <Card title="營收總額" className='skincareRevenue'>
 
+          {/* 營收總額  ring  排行榜 */}
+          <Card title="營收總額" className='skincareRevenue' style={{marginTop:'15px'}} headStyle={{ fontSize:"20px",color:"white",backgroundColor:"#d31874"}}>
+            <Tabs
+              defaultActiveKey="1"
+              onChange={onChange}
+              items={[
+                {
+                  label: `甜甜圈圖`,
+                  key: '1',
+                  children:  
+                  <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
+                    <Doughnut data={RevenueDoughnutData} plugins={[textCenter]} />;
+                  </div>,
+                },
+                {
+                  label: `樹圖`,
+                  key: '2',
+                  children: 
+                  <Treemap
+                    width={1100}
+                    height={500}
+                    data={db_revenueData}
+                    dataKey="size"
+                    stroke="#fff"
+                    fill="#8884d8"
+                    content={<CustomizedContent colors={TreemapColor} />}
+                  />,
+                },
+                {
+                  label: `表格`,
+                  key: '3',
+                  children:   
+                  <div style={{ display: "flex", justifyContent: "center"}}>
+                    <Table style={{marginTop:'30px', width:'900px'}} pagination={false} agination columns={revenueColumns} dataSource={db_revenueData} onChange={onChange} />
+                  </div>,
+                },
+              ]}
+            />
           </Card>
           {/* 人氣 人氣、留言數長條圖  星星排行榜*/}
-          <Card title="人氣" className='skincarePopularity'>
+          <Card title="人氣" className='skincarePopularity' style={{marginTop:'15px'}} headStyle={{ fontSize:"20px",color:"white",backgroundColor:"#d31874"}}>
+            <div style={{ display: "flex",  justifyContent: "center"}}>
               <BarChart
-              width={500}
-              height={300}
-              data={popularityData}
-              margin={{
-                top: 20,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-              <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-              <Tooltip />
-              <Legend />
-              <Bar yAxisId="left" dataKey="pv" fill="#8884d8" />
-              <Bar yAxisId="right" dataKey="uv" fill="#82ca9d" />
-            </BarChart>
+                width={800}
+                height={300}
+                data={popularityData}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis yAxisId="left" orientation="left" stroke="#d31874" />
+                <YAxis yAxisId="right" orientation="right" stroke="#4e484a" />
+                <Tooltip />
+                <Legend />
+                <Bar yAxisId="left" dataKey="人氣" fill="#d31874" />
+                <Bar yAxisId="right" dataKey="留言數" fill="#4e484a" />
+              </BarChart>
+            </div>
           </Card>
 
         </Col>
-
+       </ConfigProvider>
     </Row>
   )
 }
-
 
 export default Skincare

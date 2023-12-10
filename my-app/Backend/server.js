@@ -25,7 +25,7 @@ app.get('/products',(req, res) =>{
 
 // skincare - 商品數
 app.get('/skincare/products',(req, res) =>{
-    const sql = "SELECT type, class, number FROM MomoSkinCare.skincare_analysis where type='商品數';";
+    const sql = "SELECT class as name, number as size FROM MomoSkinCare.skincare_analysis where type='商品數';";
     db.query(sql, (err, data) => {
         if(err) return res.json(err);
         return res.json(data);
@@ -41,7 +41,7 @@ app.get('/skincare/sales',(req, res) =>{
 })
 // skincare - 營收總額
 app.get('/skincare/revenue',(req, res) =>{
-    const sql = "SELECT type, class, number FROM MomoSkinCare.skincare_analysis where type='銷量';";
+    const sql = "SELECT class as name, number as size FROM MomoSkinCare.skincare_analysis where type='營收總額';";
     db.query(sql, (err, data) => {
         if(err) return res.json(err);
         return res.json(data);
