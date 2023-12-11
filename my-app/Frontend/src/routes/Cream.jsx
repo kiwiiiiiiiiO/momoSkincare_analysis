@@ -625,13 +625,13 @@ const contentList2 = {
   products: 
   <Col span={22}>
     <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-      <Doughnut data={usageProductData} plugins={[textCenter]} />;
+      <Doughnut data={usageProductData} plugins={[textCenter]} />
     </div>
   </Col>,
   sales: 
     <Col span={22}>
       <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-        <Doughnut data={usageSalesData} plugins={[textCenter]} />;
+        <Doughnut data={usageSalesData} plugins={[textCenter]} />
       </div>
     </Col>,
   revenue: 
@@ -674,13 +674,13 @@ const contentList3 = {
   products: 
   <Col span={22}>
     <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-      <Doughnut data={functionProductData} plugins={[textCenter]} />;
+      <Doughnut data={functionProductData} plugins={[textCenter]} />
     </div>
   </Col>,
   sales: 
     <Col span={22}>
       <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-        <Doughnut data={functionSalesData} plugins={[textCenter]} />;
+        <Doughnut data={functionSalesData} plugins={[textCenter]} />
       </div>
     </Col>,
   revenue: 

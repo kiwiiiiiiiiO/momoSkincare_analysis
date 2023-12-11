@@ -294,7 +294,7 @@ const Skincare = () => {
                   key: '1',
                   children:  
                   <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-                    <Doughnut data={ProductsDoughnutData} plugins={[textCenter]} />;
+                    <Doughnut data={ProductsDoughnutData} plugins={[textCenter]} />
                   </div>,
                 },
                 {
@@ -335,7 +335,7 @@ const Skincare = () => {
                   key: '1',
                   children: 
                   <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-                    <Doughnut data={SalesDoughnutData} plugins={[textCenter]} />;
+                    <Doughnut data={SalesDoughnutData} plugins={[textCenter]} />
                   </div>,
                 },
                 {
@@ -375,7 +375,7 @@ const Skincare = () => {
                   key: '1',
                   children:  
                   <div style={{ display: "flex",  justifyContent: "center", height:"400px"}}>
-                    <Doughnut data={RevenueDoughnutData} plugins={[textCenter]} />;
+                    <Doughnut data={RevenueDoughnutData} plugins={[textCenter]} />
                   </div>,
                 },
                 {
