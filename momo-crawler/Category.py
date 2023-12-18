@@ -44,7 +44,6 @@ class Category():
         elif(outType == "string"):
             subCategories = []
             for r in rawLists:
-                #print(r.get_attribute("indexname"))
                 subCategories.append(r.get_attribute("indexname"))
             return subCategories
                          
@@ -66,29 +65,15 @@ class Category():
             for b in subCategories2:
                 if(b.get_attribute("title") == None):
                     pass
-                #print(b.get_attribute("outerHTML"))
                 subCategories2List.append(b.get_attribute("title"))
             return subCategories2List
     
     #在網頁上選取小分類
     def selectSubCate2(self, subCate1, subCate2):
         subCates2 = self.getSubCategories2(subCate1, "webElement")
-        '''
-        openCate2List = self.driver.find_elements(By.XPATH, "//table[@class = 'wrapTable']//tbody//tr")
-        for o in openCate2List:
-            if(o.get_attribute("indexname") == subCate1):
-                openCate2List = o.find_element(By.XPATH, ".//td//a[@class = 'multipleChoiceBtn']")
-                break
-        
-        self.wait.until(EC.element_to_be_clickable(openCate2List))
-        openCate2List.click()
-        '''
         for s in subCates2:
             if(subCate2 in s.get_attribute("title")):
-                
-                #self.wait.until(EC.element_to_be_clickable(s))
                 self.driver.execute_script("(arguments[0]).click();", s)
-                #s.click()
                 self.wait.until(EC.visibility_of_element_located((By.XPATH, "//label[@class = 'selected']")))
                 break
     
@@ -104,7 +89,6 @@ class Category():
             nextPageBotton = self.driver.find_element(By.XPATH, "//a[contains(text(),'下一頁')]")
             self.wait.until(EC.element_to_be_clickable(nextPageBotton))
             nextPageBotton.click()
-            #self.wait.until(EC.visibility_of_element_located((By.XPATH, "//li[contains(text(),'頁數')]")))
         
         LinksList = []
         pages = int(getPages())
