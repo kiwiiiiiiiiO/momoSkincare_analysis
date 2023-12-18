@@ -749,7 +749,7 @@ const EyeCream = () => {
            },
        }} >
      <Card title="價格區間" 
-       style={{ width:"1150px", marginTop:"15px"}}
+       style={{ width:"1250px", marginTop:"15px"}}
        tabList={tabList}
        activeTabKey={activeTabKey1}
        onTabChange={onTab1Change}
