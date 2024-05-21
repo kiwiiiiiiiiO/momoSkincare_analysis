@@ -9,7 +9,7 @@ const db = mysql.createConnection({
     host:'localhost',
     port:3306,
     user:'root',
-    password:'aa910828',
+    password:'${PASSWORD},
     database:'MomoSkinCare'
 })
 app.get('/',(req, res) =>{
